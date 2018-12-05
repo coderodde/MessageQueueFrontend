@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <form action="lataaKuvake" method="post" enctype="multipart/form-data">
+            <input id="avatarFormAvatarFile" type="file" name="avatarRawFile"/>
+        </form>
+        <button id="updateAvatarButton" onclick="updateAvatar()">Päivitä kuvake</button>
+        <script>
+            function updateAvatar() {
+                var xhr = new XMLHttpRequest();
+                
+                xhr.onreadystatechange = function() {
+                    console.log(this.responseText);
+                };
+                
+                xhr.open("POST", "lataaKuvake");
+                var formData = new FormData();
+                formData.append("avatarRawFile", document.getElementById("avatarFormAvatarFile").files[0]);
+                xhr.send(formData);
+            }
+        </script>
+    </body>
+</html>
